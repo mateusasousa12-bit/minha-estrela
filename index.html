@@ -18,7 +18,6 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/* ESTRELAS */
 .star {
     position: absolute;
     width: 2px;
@@ -78,6 +77,26 @@ body {
     font-size: 18px;
     padding: 0 20px;
     text-shadow: 0 0 15px rgba(255,255,255,1);
+    min-height: 60px;
+}
+
+.botao-musica{
+    margin-top:20px;
+    padding:12px 25px;
+    border:none;
+    border-radius:25px;
+    background:gold;
+    color:black;
+    font-size:16px;
+    cursor:pointer;
+    box-shadow:0 0 20px gold;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+    0%{ transform: scale(1); }
+    50%{ transform: scale(1.1); }
+    100%{ transform: scale(1); }
 }
 
 </style>
@@ -94,6 +113,34 @@ for(let i=0; i<150; i++){
     star.style.animationDuration = (Math.random()*3+1) + "s";
     document.body.appendChild(star);
 }
+
+const texto = "você é a estrela mais brilhante do universo, eu te amo muito 💖✨";
+let i = 0;
+
+function digitar(){
+    if(i < texto.length){
+        document.getElementById("texto").innerHTML += texto.charAt(i);
+        i++;
+        setTimeout(digitar, 50);
+    }
+}
+
+function tocarMusica(){
+    const musica = document.getElementById("musica");
+    musica.volume = 0;
+    musica.play();
+
+    let fade = setInterval(() => {
+        if(musica.volume < 1){
+            musica.volume += 0.05;
+        } else {
+            clearInterval(fade);
+        }
+    }, 200);
+
+    document.querySelector(".botao-musica").style.display = "none";
+    digitar();
+}
 </script>
 
 <div class="container">
@@ -102,13 +149,14 @@ for(let i=0; i<150; i++){
         <img src="foto.jpg" class="foto">
     </div>
 
-    <div class="legenda">
-        você é a estrela mais brilhante do universo,<br>
-        eu te amo muito 💖✨
-    </div>
+    <div class="legenda" id="texto"></div>
+
+    <button onclick="tocarMusica()" class="botao-musica">
+        💖 Clique aqui meu amor 💖
+    </button>
 </div>
 
-<audio autoplay loop>
+<audio id="musica" loop>
     <source src="musica.mp3" type="audio/mpeg">
 </audio>
 
