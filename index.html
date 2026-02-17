@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minha Estrela ✨</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: radial-gradient(circle at bottom, #020111 0%, #000000 80%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+/* ESTRELAS */
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+    from { opacity: 0.2; }
+    to { opacity: 1; }
+}
+
+.container {
+    position: relative;
+    text-align: center;
+    z-index: 2;
+}
+
+.foto-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.aura {
+    position: absolute;
+    top: -35px;
+    left: -35px;
+    width: 290px;
+    height: 290px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, gold, transparent, gold);
+    animation: rotate 6s linear infinite;
+    filter: blur(25px);
+    z-index: 1;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.foto {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    object-fit: cover;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 0 50px 20px rgba(255,255,200,0.9);
+}
+
+.legenda {
+    margin-top: 30px;
+    color: white;
+    font-size: 18px;
+    padding: 0 20px;
+    text-shadow: 0 0 15px rgba(255,255,255,1);
+}
+
+</style>
+</head>
+
+<body>
+
+<script>
+for(let i=0; i<150; i++){
+    let star = document.createElement("div");
+    star.className = "star";
+    star.style.top = Math.random()*100 + "vh";
+    star.style.left = Math.random()*100 + "vw";
+    star.style.animationDuration = (Math.random()*3+1) + "s";
+    document.body.appendChild(star);
+}
+</script>
+
+<div class="container">
+    <div class="foto-wrapper">
+        <div class="aura"></div>
+        <img src="foto.jpg" class="foto">
+    </div>
+
+    <div class="legenda">
+        você é a estrela mais brilhante do universo,<br>
+        eu te amo muito 💖✨
+    </div>
+</div>
+
+<audio autoplay loop>
+    <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+</body>
+</html>
